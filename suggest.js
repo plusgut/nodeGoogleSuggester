@@ -23,13 +23,15 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE. 
 */
 
+// Configs:
+var debug	= true;
 
 var http	= require( "http" );
 
-// Configs:
-var debug	= true;
-var stack	= new Array();
+var stack	= new Array;
 stack[ 0 ]	= process.argv[ 2 ];
+
+var searches	= new Array;
 
 crawlIt( stack , "");
 
@@ -64,8 +66,12 @@ function crawlIt( stack , prefix )
 						{
 							var suggestion	= dataArray[ suggestionData ].split( '","' );
 							var search	= suggestion[ 0 ].replace( '"', "");
-							searchResult.push( search );
-							console.log( prefix + search );
+							if( !inArray( searches, search ) )
+							{
+								searchResult.push( search );
+								searches.push( search );
+								console.log( prefix + search );
+							}
 						}
 					}
 					crawlIt( searchResult, prefix + "\t");
@@ -77,4 +83,16 @@ function crawlIt( stack , prefix )
 			});
 		});
 	});
+}
+
+function inArray( checkArray, value )
+{
+	for( var key in checkArray )
+	{
+		if( checkArray[ key ] == value )
+		{
+			return true;
+		}
+	}
+	return false;
 }

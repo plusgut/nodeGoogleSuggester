@@ -1,0 +1,10 @@
+To use the script just do this: node suggest.js KEYWORD
+
+I added a php-file to show the output of the node-script
+but I don't recommend to use the php-script, because of these reasons:
+	1) Its slow, and you don't see the beauty of node (its highly event-based)
+	2) If you make to much requests, google maybe do not visit your server again 
+
+Licence of the scripts: MIT
+
+If you have any questions, just ask (but please in the issues-box)
